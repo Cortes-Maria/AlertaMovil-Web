@@ -27,6 +27,11 @@ class Navigation extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/zones">
+                                    Zonas de interés 
+                                </Link>
+                            </li>
+                            <li className="nav-item">
                                 {   
                                    ( localStorage.getItem('idCliente') !== 'undefined' && localStorage.getItem('idCliente') !== null) ?
                                     <Link className="nav-link" to="/profileCliente">

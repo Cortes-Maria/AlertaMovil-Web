@@ -8,6 +8,8 @@ import Navigation from './components/Navigation'
 import Home from './components/Home'
 import Alertas from './components/Alertas'
 import SignUp from './components/SignUp'
+import Zonas from './components/Zonas'
+import Historial from './components/Historial'
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Route path="/" exact component={Home}/>
       <Route path="/alertas" component={Alertas}/>
       <Route path="/signup" component={SignUp}/>
+      <Route path="/zones" component={Zonas}/>
+      <Route path="/history" component={Historial}/>
    </Router>
   );
 }

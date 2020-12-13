@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
-function Alertas(props) {
+function Historial(props) {
 
   
     const [alerts,setAlerts] = useState([]);
@@ -28,48 +27,18 @@ function Alertas(props) {
         loadAlerts();
     },[])
 
-	var defaultUserZones = [{
-        "name": "Parrita",
-        "isInterested": false
-      },
-      {
-        "name": "Chepe",
-        "isInterested": false
-      },
-      {
-        "name": "Alajuela",
-        "isInterested": false
-    }]
+	var defaultPlace = "" ;
 
-    var userZones = []
+    var place = "";
 
     function checkUserZones(zoneStr) {
-        console.log("aqui");
-        console.log(userZones);
-        var i;
-        for (i=0; i<userZones.length; i++){
-            console.log(userZones[i].name == zoneStr );
-            if(userZones[i].name === zoneStr && userZones[i].isInterested){
-                return true
-            }
-        }
-        return false;
+       return zoneStr === place;
     }
-    
-        if(props.location.alertsProps !== undefined){
-            userZones = props.location.alertsProps.zones;
-            console.log("zones", props.location.alertsProps.zones);
-            localStorage.setItem('zones', JSON.stringify(props.location.alertsProps.zones));
-            console.log("hizo esto");
-        }else {
-            userZones = defaultUserZones;
-            console.log("hizo lo otro");
-        }
 
-        if(localStorage.getItem('zones') !== null){
-            userZones = JSON.parse(localStorage.getItem('zones'));
+        if(props.location.historyProps !== undefined){
+           place = props.location.historyProps.place;
         }else {
-            userZones = defaultUserZones;
+            place = defaultPlace;
         }
 
         return (
@@ -80,7 +49,7 @@ function Alertas(props) {
             <p>Loading...</p>
             : 
             <div>
-                <h1 className="text-center" style={{marginTop: 20}}>Alertas Recientes</h1>
+                <h1 className="text-center" style={{marginTop: 20}}>Historial</h1>
                 <div className="row">
                     {
                         alerts.map((u,i) => (
@@ -90,14 +59,7 @@ function Alertas(props) {
                             <div className="col-md-4 p-2" key={u.place}>
                                 <div className="card">
                                     <div className="card-body">
-                                        <Link className="nav-link" to={{
-                                                    pathname: '/history',
-                                                    historyProps: {
-                                                        place: u.place
-                                                    }
-                                                }}>
-                                            <h5 className="text-center">{u.disaster}</h5>
-                                        </Link>
+                                        <h5 className="text-center">{u.disaster}</h5>
                                         <p className="text-center">{u.place}</p>
                                         <div className="row">
                                             <div className="col-sm">
@@ -118,5 +80,5 @@ function Alertas(props) {
 
         )
 }
-export default Alertas;
+export default Historial;
 
